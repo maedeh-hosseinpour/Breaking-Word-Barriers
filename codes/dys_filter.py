@@ -35,11 +35,9 @@ def clean_text(text)-> str:
     return text.strip()
 
 def detect_difficult_words(text)-> dict:
-    # Define regex patterns for tricky words
     complex_vowel_pattern = re.compile(r'ea|ou|ei|ie|oe|ai|au|oo')
     # digraphs reference: Variability in the word-reading performance of dyslexic readers: Effects of letter length, phoneme length and digraph presence, Bigraph-syllable blending therapy in deep dyslexia
     difficult_digraphs_pattern = re.compile(r'th|ch|gh|sh|ph|wh')
-    # this is a sample: 
     # homophones references: Surface Dyslexia in a Language Without Irregularly Spelled Words, Do dyslexics misread a ROWS for a ROSE?
     #http://www.singularis.ltd.uk/bifroest/misc/homophones-list.html
     homophones =set({
@@ -89,7 +87,6 @@ def detect_difficult_words(text)-> dict:
 
         if re.search(r'[^aeiou]{4,}', word):  # Four or more consonants in a row
             hasComplexConsonants.append(word)
-        #https://docs.google.com/spreadsheets/d/1uCTNwCMq3r9tTOgQOzyT0otCAyjiwLF9Gdpw6oaK1j4/edit?usp=sharing
         if difficult_digraphs_pattern.search(word):  # th/ch/gh/sh/ph/wh
             diagraphs.append(word)
         
